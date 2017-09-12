@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "622935555532",
+    "firebase_url": "https://poturnochat-7869f.firebaseio.com",
+    "project_id": "poturnochat-7869f",
+    "storage_bucket": "poturnochat-7869f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:622935555532:android:177ef80f062a6206",
+        "android_client_info": {
+          "package_name": "com.poturno.poturnochat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "622935555532-djeqnfsvh0fcuaq7463288nql8pbqtra.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.poturno.poturnochat",
+            "certificate_hash": "ae16d72f506b72ff91a3b85f8b6f9d1be69f690e"
+          }
+        },
+        {
+          "client_id": "622935555532-j41it46iemimlt6lhbtnn130qfapcun4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7_hImvbP1NHzqE1bv2rwrJVIb6jFIlGo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "622935555532-j41it46iemimlt6lhbtnn130qfapcun4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
