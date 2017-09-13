@@ -10,8 +10,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="300px"
-        android:layout_height="300px"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="37dp"
@@ -65,6 +65,7 @@
         android:layout_below="@+id/edit_signup_password1"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="@color/colorPrimaryDark"
-        android:text="@string/btn_signup" />
+        android:text="@string/btn_signup"
+        android:textSize="15dp"
+        android:theme="@style/btnPattern" />
 </android.widget.RelativeLayout>
