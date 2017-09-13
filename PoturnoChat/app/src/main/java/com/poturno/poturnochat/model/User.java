@@ -1,5 +1,9 @@
 package com.poturno.poturnochat.model;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.Exclude;
+import com.poturno.poturnochat.config.FirebaseConfig;
+
 /**
  * Created by vitor on 12/09/2017.
  */
@@ -15,6 +19,12 @@ public class User {
 
     }
 
+    public void save(){
+        DatabaseReference databaseReference = FirebaseConfig.getDatabaseReference();
+        databaseReference.child("users").child(getId()).setValue(this);
+    }
+
+    @Exclude
     public String getId() {
         return id;
     }
@@ -39,6 +49,7 @@ public class User {
         this.email = email;
     }
 
+    @Exclude
     public String getPassword() {
         return password;
     }

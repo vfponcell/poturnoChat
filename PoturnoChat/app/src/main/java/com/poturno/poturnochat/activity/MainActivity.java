@@ -1,21 +1,43 @@
 package com.poturno.poturnochat.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 
-import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.auth.FirebaseAuth;
 import com.poturno.poturnochat.R;
 import com.poturno.poturnochat.config.FirebaseConfig;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DatabaseReference databaseReference;
+    private Button logout;
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        databaseReference = FirebaseConfig.getDatabaseReference();
+        logout = (Button)findViewById(R.id.btn_logout);
+
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                firebaseAuth = FirebaseConfig.getFirebaseAuth();
+                firebaseAuth.signOut();
+
+                openLogin();
+
+            }
+        });
+
+    }
+
+    private void openLogin(){
+        Intent intent = new Intent(MainActivity.this,LoginActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

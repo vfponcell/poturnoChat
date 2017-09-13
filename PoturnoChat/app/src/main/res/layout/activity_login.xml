@@ -59,5 +59,6 @@
         android:layout_below="@+id/btn_login"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
+        android:onClick="openSignup"
         android:text="@string/txt_signup" />
 </android.widget.RelativeLayout>

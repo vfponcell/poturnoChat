@@ -12,6 +12,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 import com.poturno.poturnochat.R;
 import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.model.User;
@@ -59,9 +62,28 @@ public class SignupActivity extends AppCompatActivity {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
-                    Toast.makeText(SignupActivity.this,"Usuario cadastrado com sucesso",Toast.LENGTH_LONG).show();
+                    user.setId(task.getResult().getUser().getUid());
+                    user.save();
+                    Toast.makeText(SignupActivity.this,"Usuario cadastrado com sucesso!",Toast.LENGTH_LONG).show();
+                    firebaseAuth.signOut();
+                    finish();
                 }else{
-                    Toast.makeText(SignupActivity.this,"Erro: Usuario não cadastrado",Toast.LENGTH_LONG).show();
+
+                    String error = "";
+
+                    try {
+                        throw task.getException();
+                    } catch (FirebaseAuthWeakPasswordException e) {
+                        error = "Senha fraca!";
+                    } catch (FirebaseAuthInvalidCredentialsException e) {
+                        error = "Email invalido!";
+                    } catch (FirebaseAuthUserCollisionException e) {
+                        error = "Email ja em uso!";
+                    } catch (Exception e) {
+                        error = "Ao efetuar o cadastro!";
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(SignupActivity.this,"Erro: "+error,Toast.LENGTH_LONG).show();
                 }
             }
         });
