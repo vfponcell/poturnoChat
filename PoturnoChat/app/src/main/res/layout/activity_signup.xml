@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary"
     android:padding="20px"
-    tools:context="com.poturno.poturnochat.SignupActivity">
+    tools:context="com.poturno.poturnochat.activity.SignupActivity">
 
     <ImageView
         android:id="@+id/imageView"

@@ -1,4 +1,4 @@
-package com.poturno.poturnochat;
+package com.poturno.poturnochat.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import com.poturno.poturnochat.R;
 
 public class LoginActivity extends AppCompatActivity {
 
