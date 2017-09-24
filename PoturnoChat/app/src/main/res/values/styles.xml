@@ -15,4 +15,8 @@
         <item name="colorControlHighlight">@color/colorPrimary</item>
     </style>
 
+    <style name="AlertDialogAddContact" parent="Theme.AppCompat.Dialog.Alert">
+        <item name="android:background">@color/colorPrimary</item>
+    </style>
+
 </resources>
