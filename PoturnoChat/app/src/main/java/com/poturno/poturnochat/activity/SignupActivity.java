@@ -85,7 +85,7 @@ public class SignupActivity extends AppCompatActivity {
                     user.save();
 
                     Preferences preferences = new Preferences(SignupActivity.this);
-                    preferences.saveData(userIdentifier,user.getName());
+                    preferences.saveData(userIdentifier,user.getName(),user.getEmail());
 
                     Toast.makeText(SignupActivity.this,"Usuario cadastrado com sucesso!",Toast.LENGTH_LONG).show();
                     openUserLogin();

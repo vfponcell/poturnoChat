@@ -96,7 +96,7 @@ public class LoginActivity extends AppCompatActivity {
                             User userRecover = dataSnapshot.getValue(User.class);
 
                             Preferences preferences = new Preferences(LoginActivity.this);
-                            preferences.saveData(userIdentifier,userRecover.getName());
+                            preferences.saveData(userIdentifier,userRecover.getName(),userRecover.getEmail());
 
                         }
 

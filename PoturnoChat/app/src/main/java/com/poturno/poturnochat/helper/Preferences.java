@@ -16,6 +16,7 @@ public class Preferences {
     private SharedPreferences.Editor editor;
     private final String INDENTIFIER_KEY = "logedUserIdentifier";
     private final String NAME_KEY = "logedUserName";
+    private final String EMAIL_KEY = "logedUserEmail";
 
     public Preferences(Context context){
         this.context = context;
@@ -23,9 +24,10 @@ public class Preferences {
         editor = preferences.edit();
     }
 
-    public void saveData(String userIdentifier ,String userName){
+    public void saveData(String userIdentifier ,String userName, String userEmail){
         editor.putString(INDENTIFIER_KEY,userIdentifier);
         editor.putString(NAME_KEY,userName);
+        editor.putString(EMAIL_KEY,userEmail);
         editor.commit();
     }
 
@@ -35,5 +37,9 @@ public class Preferences {
 
     public String getName(){
         return preferences.getString(NAME_KEY,null);
+    }
+
+    public String getEmail(){
+        return preferences.getString(EMAIL_KEY,null);
     }
 }
