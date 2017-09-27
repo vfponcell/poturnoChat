@@ -8,46 +8,46 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.poturno.poturnochat.R;
-import com.poturno.poturnochat.model.Contact;
+import com.poturno.poturnochat.model.Chat;
 
 import java.util.ArrayList;
 
 /**
- * Created by vitor on 20/09/2017.
+ * Created by vitor on 26/09/2017.
  */
 
-public class ContactsAdapter extends ArrayAdapter<Contact> {
+public class ChatAdapter extends ArrayAdapter<Chat> {
 
-    private ArrayList<Contact> contacts;
+    private ArrayList<Chat> chats;
     private Context context;
 
-    public ContactsAdapter( Context context, ArrayList<Contact> objects) {
+    public ChatAdapter( Context context, ArrayList<Chat> objects) {
         super(context, 0, objects);
         this.context = context;
-        this.contacts = objects;
+        this.chats = objects;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         View view = null;
 
-        if(contacts!=null){
+        if(chats!=null){
             LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-            view = inflater.inflate(R.layout.contact_list, parent,false);
+            view = inflater.inflate(R.layout.chat_list, parent, false);
 
-            Contact contact = contacts.get(position);
+            Chat chat = chats.get(position);
             TextView contactName = (TextView) view.findViewById(R.id.txt_name);
-            TextView contactEmail = (TextView) view.findViewById(R.id.txt_email);
-            contactName.setText(contact.getName());
-            contactEmail.setText(contact.getEmail());
+            TextView lastmensage = (TextView) view.findViewById(R.id.txt_mensage);
+            contactName.setText(chat.getName());
+            lastmensage.setText(chat.getMensageValue());
 
             if(position%2==1){
                 view.setBackgroundResource(R.color.colorLight0);
 
             }
-        }
 
-        return  view;
+        }
+        return view;
     }
 }

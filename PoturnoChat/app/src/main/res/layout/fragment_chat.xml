@@ -4,11 +4,9 @@
     android:layout_height="match_parent"
     tools:context="com.poturno.poturnochat.fragment.ChatFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
+    <ListView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="chat" />
+        android:id="@+id/lv_chats"
+        android:layout_gravity="center_horizontal|top"/>
 </FrameLayout>

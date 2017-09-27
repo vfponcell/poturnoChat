@@ -69,6 +69,7 @@ public class ContactsFragment extends Fragment {
         Preferences preferences = new Preferences(getActivity());
         String logedUserIdentifier = preferences.getIdentifier();
         databaseReference = FirebaseConfig.getDatabaseReference().child("contacts").child(logedUserIdentifier);
+
         valueEventListenerContacts = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
