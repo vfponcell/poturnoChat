@@ -23,9 +23,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:hint="Digite aqui..."
-            android:textColorHint="@android:color/black"
-            android:textColor="@android:color/black"/>
+            android:hint="@string/txt_digite_aqui"
+            android:textColor="@android:color/black"
+            android:textColorHint="@android:color/black" />
 
         <ImageButton
             android:id="@+id/btn_send"

@@ -23,21 +23,21 @@
         android:id="@+id/edit_login_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Digite seu e-mail"
-        android:inputType="textEmailAddress"
+        android:layout_alignParentStart="true"
         android:layout_centerVertical="true"
-        android:layout_alignParentStart="true" />
+        android:ems="10"
+        android:hint="@string/txt_hint_email"
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/edit_login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Digite sua senha"
-        android:inputType="textPassword"
+        android:layout_alignParentStart="true"
         android:layout_below="@+id/edit_login_email"
-        android:layout_alignParentStart="true" />
+        android:ems="10"
+        android:hint="@string/txt_hint_password"
+        android:inputType="textPassword" />
 
     <Button
         android:id="@+id/btn_login"

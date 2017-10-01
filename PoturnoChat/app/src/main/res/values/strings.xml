@@ -10,6 +10,15 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_digite_aqui">Digite aqui...</string>
+    <string name="txt_hint_email">Digite seu e-mail</string>
+    <string name="txt_hint_password">Digite sua senha</string>
+    <string name="txt_hint_name">Digite seu nome</string>
+    <string name="txt_hint_password2">Digite sua senha novamente</string>
+    <string name="btn_conta">Conta</string>
+    <string name="btn_change_name">Alterar Nome</string>
+    <string name="btn_change_password">Alterar Senha</string>
+    <string name="btn_delete_account">Deletar Conta</string>
 
 
 </resources>

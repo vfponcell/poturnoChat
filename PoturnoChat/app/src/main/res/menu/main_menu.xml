@@ -12,12 +12,16 @@
         android:orderInCategory="200"
         app:showAsAction="never"/>
 
-    <item android:id="@+id/item_search" android:title="@string/item_search"
-        android:orderInCategory="300" app:showAsAction="always"
+    <item android:id="@+id/item_search"
+        android:title="@string/item_search"
+        android:orderInCategory="300"
+        app:showAsAction="always"
         android:icon="@drawable/ic_search" />
 
-    <item android:id="@+id/item_add" android:title="@string/item_add"
-        android:orderInCategory="400" app:showAsAction="always"
+    <item android:id="@+id/item_add"
+        android:title="@string/item_add"
+        android:orderInCategory="400"
+        app:showAsAction="always"
         android:icon="@drawable/ic_person_add" />
 
 </menu>
