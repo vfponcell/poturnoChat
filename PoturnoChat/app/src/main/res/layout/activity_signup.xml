@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/colorPrimary"
-    android:padding="20px"
-    tools:context="com.poturno.poturnochat.activity.SignupActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/colorPrimary"
+              android:orientation="vertical"
+              android:padding="20px"
+              tools:context="com.poturno.poturnochat.activity.SignupActivity">
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/perfil_iv"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="37dp"
-        app:srcCompat="@drawable/ic_person_add" />
+        app:srcCompat="@drawable/ic_person_add"/>
 
     <EditText
         android:id="@+id/edit_signup_name"
@@ -26,7 +28,7 @@
         android:layout_marginTop="29dp"
         android:ems="10"
         android:hint="@string/txt_hint_name"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"/>
 
     <EditText
         android:id="@+id/edit_signup_email"
@@ -36,7 +38,7 @@
         android:layout_below="@+id/edit_signup_name"
         android:ems="10"
         android:hint="@string/txt_hint_email"
-        android:inputType="textEmailAddress" />
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/edit_signup_password0"
@@ -46,7 +48,7 @@
         android:layout_below="@+id/edit_signup_email"
         android:ems="10"
         android:hint="@string/txt_hint_password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"/>
 
     <EditText
         android:id="@+id/edit_signup_password1"
@@ -56,7 +58,7 @@
         android:layout_below="@+id/edit_signup_password0"
         android:ems="10"
         android:hint="@string/txt_hint_password2"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"/>
 
     <Button
         android:id="@+id/btn_signup"
@@ -67,5 +69,5 @@
         android:layout_marginTop="20dp"
         android:text="@string/btn_signup"
         android:textSize="15dp"
-        android:theme="@style/btnPattern" />
-</android.widget.RelativeLayout>
+        android:theme="@style/btnPattern"/>
+</LinearLayout>
