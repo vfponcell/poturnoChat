@@ -39,6 +39,13 @@ public class LoginActivity extends AppCompatActivity {
     private String userIdentifier;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        isUserLoged();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
@@ -139,5 +146,6 @@ public class LoginActivity extends AppCompatActivity {
     public void openSignup(View view){
         Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
         startActivity(intent);
+
     }
 }

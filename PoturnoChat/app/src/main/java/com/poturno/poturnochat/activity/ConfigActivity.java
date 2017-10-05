@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.poturno.poturnochat.R;
+import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.helper.Preferences;
 
 public class ConfigActivity extends AppCompatActivity {
@@ -17,6 +18,15 @@ public class ConfigActivity extends AppCompatActivity {
     private Button account;
 
     @Override
+    protected void onResume() {
+        super.onResume();
+
+        Preferences preferences = new Preferences(ConfigActivity.this);
+        name.setText(preferences.getName());
+        email.setText(preferences.getEmail());
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_config);
@@ -24,10 +34,6 @@ public class ConfigActivity extends AppCompatActivity {
         name = (TextView)findViewById(R.id.txt_name);
         email = (TextView)findViewById(R.id.txt_email);
         account = (Button)findViewById(R.id.btn_conta);
-
-        Preferences preferences = new Preferences(ConfigActivity.this);
-        name.setText(preferences.getName());
-        email.setText(preferences.getEmail());
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override

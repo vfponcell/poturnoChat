@@ -36,11 +36,10 @@
         android:id="@+id/btn_conta"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        android:theme="@style/btnPattern"
-        tools:text="@string/btn_conta"
         android:layout_below="@+id/txt_email"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="24dp"
+        android:text="@string/btn_conta"
+        android:theme="@style/btnPattern" />
 
 </RelativeLayout>

@@ -29,25 +29,38 @@ public class ChatAdapter extends ArrayAdapter<Chat> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = null;
+        View _view = convertView;
+        ViewHolder vh;
 
         if(chats!=null){
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
-
-            view = inflater.inflate(R.layout.chat_list, parent, false);
+            if(_view==null){
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+                _view = inflater.inflate(R.layout.chat_list, parent, false);
+                vh = new ViewHolder();
+                vh.contactName = (TextView) _view.findViewById(R.id.txt_name);
+                vh.lastMensage = (TextView) _view.findViewById(R.id.txt_mensage);
+                _view.setTag(vh);
+            }else{
+                vh = (ViewHolder) _view.getTag();
+            }
 
             Chat chat = chats.get(position);
-            TextView contactName = (TextView) view.findViewById(R.id.txt_name);
-            TextView lastmensage = (TextView) view.findViewById(R.id.txt_mensage);
-            contactName.setText(chat.getName());
-            lastmensage.setText(chat.getMensageValue());
+
+            vh.contactName.setText(chat.getName());
+            vh.lastMensage.setText(chat.getMensageValue());
 
             if(position%2==1){
-                view.setBackgroundResource(R.color.colorLight0);
-
+                _view.setBackgroundResource(R.color.colorLight0);
+            }else{
+                _view.setBackgroundResource(R.color.colorAccent);
             }
 
         }
-        return view;
+        return _view;
+    }
+
+    private static class ViewHolder{
+        public  TextView contactName;
+        public  TextView lastMensage;
     }
 }

@@ -3,7 +3,6 @@ package com.poturno.poturnochat.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -23,10 +22,9 @@ import com.poturno.poturnochat.helper.Preferences;
 import com.poturno.poturnochat.model.Chat;
 import com.poturno.poturnochat.model.Mensage;
 
-import java.io.Console;
 import java.util.ArrayList;
 
-public class ChatActivit extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private EditText editMensage;
@@ -56,7 +54,7 @@ public class ChatActivit extends AppCompatActivity {
         btnSend = (ImageButton) findViewById(R.id.btn_send);
         listView = (ListView) findViewById(R.id.lv_chat);
 
-        Preferences preferences = new Preferences(ChatActivit.this);
+        Preferences preferences = new Preferences(ChatActivity.this);
         senderContactId = preferences.getIdentifier();
         senderContactName = preferences.getName();
 
@@ -75,7 +73,7 @@ public class ChatActivit extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         mensages = new ArrayList<>();
-        adapter = new MensageAdapter(ChatActivit.this,mensages);
+        adapter = new MensageAdapter(ChatActivity.this,mensages);
         listView.setAdapter(adapter);
 
 
@@ -120,11 +118,11 @@ public class ChatActivit extends AppCompatActivity {
 
                     Boolean senderMensageSaved = saveMensage(senderContactId, destinationContactId, mensage);
                     if(!senderMensageSaved){
-                        Toast.makeText(ChatActivit.this,"Problema ao salvar mensagem", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChatActivity.this,"Problema ao salvar mensagem", Toast.LENGTH_LONG).show();
                     }else {
                         Boolean destinatioMensageSaved = saveMensage(destinationContactId, senderContactId, mensage);
                         if(!destinatioMensageSaved){
-                            Toast.makeText(ChatActivit.this,"Problema ao enviar mensagem", Toast.LENGTH_LONG).show();
+                            Toast.makeText(ChatActivity.this,"Problema ao enviar mensagem", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -135,7 +133,7 @@ public class ChatActivit extends AppCompatActivity {
 
                     Boolean senderChatSaved = saveChat(senderContactId,destinationContactId, chat);
                     if(!senderChatSaved){
-                        Toast.makeText(ChatActivit.this,"Problema ao salvar conversa", Toast.LENGTH_LONG).show();
+                        Toast.makeText(ChatActivity.this,"Problema ao salvar conversa", Toast.LENGTH_LONG).show();
                     }else {
                         chat = new Chat();
                         chat.setUserId(senderContactId);
@@ -144,7 +142,7 @@ public class ChatActivit extends AppCompatActivity {
 
                         Boolean destinationChatSaved = saveChat(destinationContactId,senderContactId,chat);
                         if(!destinationChatSaved){
-                            Toast.makeText(ChatActivit.this,"Problema ao enviar conversa", Toast.LENGTH_LONG).show();                        }
+                            Toast.makeText(ChatActivity.this,"Problema ao enviar conversa", Toast.LENGTH_LONG).show();                        }
                     }
 
                     editMensage.setText("");

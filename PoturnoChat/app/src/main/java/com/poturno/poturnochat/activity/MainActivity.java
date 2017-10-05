@@ -77,6 +77,7 @@ public class MainActivity extends AppCompatActivity {
                 openLogin();
                 return true;
             case R.id.item_settings:
+                openConfig();
                 return true;
             case R.id.item_add:
                 openContactRegister();
@@ -163,5 +164,10 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this,LoginActivity.class);
         startActivity(intent);
         finish();
+    }
+
+    private void openConfig(){
+        Intent intent = new Intent(MainActivity.this,ConfigActivity.class);
+        startActivity(intent);
     }
 }

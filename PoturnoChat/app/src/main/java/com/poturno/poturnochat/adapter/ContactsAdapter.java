@@ -29,25 +29,39 @@ public class ContactsAdapter extends ArrayAdapter<Contact> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View view = null;
+        View _view = convertView;
+        ViewHolder vh;
 
         if(contacts!=null){
-            LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
 
-            view = inflater.inflate(R.layout.contact_list, parent,false);
+            if(_view==null){
+                LayoutInflater inflater = (LayoutInflater) context.getSystemService(context.LAYOUT_INFLATER_SERVICE);
+                _view = inflater.inflate(R.layout.contact_list, parent,false);
+                vh = new ViewHolder();
+                vh.contactName = (TextView) _view.findViewById(R.id.txt_name);
+                vh.contactEmail = (TextView) _view.findViewById(R.id.txt_email);
+                _view.setTag(vh);
+            }else{
+                vh = (ViewHolder) _view.getTag();
+            }
 
             Contact contact = contacts.get(position);
-            TextView contactName = (TextView) view.findViewById(R.id.txt_name);
-            TextView contactEmail = (TextView) view.findViewById(R.id.txt_email);
-            contactName.setText(contact.getName());
-            contactEmail.setText(contact.getEmail());
+
+            vh.contactName.setText(contact.getName());
+            vh.contactEmail.setText(contact.getEmail());
 
             if(position%2==1){
-                view.setBackgroundResource(R.color.colorLight0);
-
+                _view.setBackgroundResource(R.color.colorLight0);
+            }else{
+                _view.setBackgroundResource(R.color.colorAccent);
             }
         }
 
-        return  view;
+        return  _view;
+    }
+
+    private static class ViewHolder{
+        public  TextView contactName;
+        public  TextView contactEmail;
     }
 }

@@ -16,13 +16,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
 import com.poturno.poturnochat.R;
-import com.poturno.poturnochat.activity.ChatActivit;
+import com.poturno.poturnochat.activity.ChatActivity;
 import com.poturno.poturnochat.adapter.ChatAdapter;
 import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.helper.Base64Custom;
 import com.poturno.poturnochat.helper.Preferences;
 import com.poturno.poturnochat.model.Chat;
-import com.poturno.poturnochat.model.Contact;
 
 import java.util.ArrayList;
 
@@ -91,7 +90,7 @@ public class ChatFragment extends Fragment {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                Intent intent = new Intent(getActivity(), ChatActivit.class);
+                Intent intent = new Intent(getActivity(), ChatActivity.class);
 
                 Chat chat = chats.get(position);
 

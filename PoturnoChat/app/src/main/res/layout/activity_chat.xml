@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorLight0"
-    tools:context="com.poturno.poturnochat.activity.ChatActivit">
+    tools:context="com.poturno.poturnochat.activity.ChatActivity">
 
     <include android:id="@+id/tbr_chat"
         layout="@layout/toolbar"/>
