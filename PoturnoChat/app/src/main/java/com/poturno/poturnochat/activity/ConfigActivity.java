@@ -16,6 +16,7 @@ public class ConfigActivity extends AppCompatActivity {
     private TextView name;
     private TextView email;
     private Button account;
+    private Button info;
 
     @Override
     protected void onResume() {
@@ -34,6 +35,7 @@ public class ConfigActivity extends AppCompatActivity {
         name = (TextView)findViewById(R.id.txt_name);
         email = (TextView)findViewById(R.id.txt_email);
         account = (Button)findViewById(R.id.btn_conta);
+        info = (Button)findViewById(R.id.btn_info);
 
         account.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,10 +43,22 @@ public class ConfigActivity extends AppCompatActivity {
                 openAccount();
             }
         });
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInfo();
+            }
+        });
     }
 
     private void openAccount(){
         Intent intent = new Intent(ConfigActivity.this,AccountActivity.class);
+        startActivity(intent);
+    }
+
+    private void openInfo(){
+        Intent intent = new Intent(ConfigActivity.this,InfoActivity.class);
         startActivity(intent);
     }
 }
