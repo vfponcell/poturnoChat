@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">PoturnoChat</string>
+    <string name="btn_login">Login</string>
+    <string name="txt_signup">Não tem conta? Dadastre-se!</string>
+    <string name="btn_signup">Cadastrar</string>
+    <string name="item_settings">Configurações</string>
+    <string name="item_logout">Sair</string>
+    <string name="item_search">Pesquisa</string>
+    <string name="item_add">Adicionar</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="txt_digite_aqui">Digite aqui...</string>
+    <string name="txt_hint_email">Digite seu e-mail</string>
+    <string name="txt_hint_password">Digite sua senha</string>
+    <string name="txt_hint_name">Digite seu nome</string>
+    <string name="txt_hint_password2">Digite sua senha novamente</string>
+    <string name="btn_conta">Conta</string>
+    <string name="btn_change_name">Alterar Nome</string>
+    <string name="btn_change_password">Alterar Senha</string>
+    <string name="btn_delete_account">Deletar Conta</string>
+    <string name="btn_info">Info</string>
+    <string name="txt_app_name">PoturnoChat</string>
+    <string name="txt_company_name">Poturno</string>
+    <string name="txt_info">Aplicação criada para fins educativos</string>
+    <string name="txt_by">by</string>
+    <string name="txt_credit">creditos</string>
+    <string name="txt_iago">Iago Belo</string>
+    <string name="txt_vitor">Vitor Poncell</string>
+
+
 </resources>
