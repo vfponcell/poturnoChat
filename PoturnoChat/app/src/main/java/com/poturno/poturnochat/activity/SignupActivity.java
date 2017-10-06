@@ -117,7 +117,7 @@ public class SignupActivity extends AppCompatActivity {
                     Log.i(TAG, "uId" + userIdentifier);
 
                     pushPictureToApi(userIdentifier, BitmapUtils.encodeToBase64(
-                            mProfilePicture, Bitmap.CompressFormat.PNG, 100));
+                            mProfilePicture, Bitmap.CompressFormat.PNG, 60));
 
                     Preferences preferences = new Preferences(SignupActivity.this);
                     preferences.saveData(userIdentifier, user.getName(), user.getEmail());
