@@ -31,8 +31,9 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activity.MainActivity"/>
         </activity>
-        <activity android:name=".activity.ConfigActivity"/>
-        <activity android:name=".activity.AccountActivity"></activity>
+        <activity android:name=".activity.ConfigActivity" />
+        <activity android:name=".activity.AccountActivity" />
+        <activity android:name=".activity.InfoActivity"></activity>
     </application>
 
 </manifest>

@@ -19,6 +19,7 @@ public class ConfigActivity extends AppCompatActivity {
     private TextView email;
     private Button account;
     private ImageView mProfilePicture;
+    private Button info;
 
     private Preferences mPreferences;
 
@@ -32,15 +33,24 @@ public class ConfigActivity extends AppCompatActivity {
         name = (TextView) findViewById(R.id.txt_name);
         email = (TextView) findViewById(R.id.txt_email);
         account = (Button) findViewById(R.id.btn_conta);
+        info = (Button)findViewById(R.id.btn_info);
         mProfilePicture = (ImageView) findViewById(R.id.profile_picture_iv);
 
         Picasso.with(this).load(Constants.Api.GET_PICTURE + mPreferences.getIdentifier() + ".png")
                 .into(mProfilePicture);
 
-        account.setOnClickListener(new View.OnClickListener() {
+
+       account.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 openAccount();
+            }
+        });
+
+        info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openInfo();
             }
         });
     }
@@ -56,6 +66,11 @@ public class ConfigActivity extends AppCompatActivity {
 
     private void openAccount() {
         Intent intent = new Intent(ConfigActivity.this, AccountActivity.class);
+        startActivity(intent);
+    }
+
+    private void openInfo(){
+        Intent intent = new Intent(ConfigActivity.this,InfoActivity.class);
         startActivity(intent);
     }
 }

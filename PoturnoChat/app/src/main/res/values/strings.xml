@@ -19,6 +19,14 @@
     <string name="btn_change_name">Alterar Nome</string>
     <string name="btn_change_password">Alterar Senha</string>
     <string name="btn_delete_account">Deletar Conta</string>
+    <string name="btn_info">Info</string>
+    <string name="txt_app_name">PoturnoChat</string>
+    <string name="txt_company_name">Poturno</string>
+    <string name="txt_info">Aplicação criada para fins educativos</string>
+    <string name="txt_by">by</string>
+    <string name="txt_credit">creditos</string>
+    <string name="txt_iago">Iago Belo</string>
+    <string name="txt_vitor">Vitor Poncell</string>
 
 
 </resources>
