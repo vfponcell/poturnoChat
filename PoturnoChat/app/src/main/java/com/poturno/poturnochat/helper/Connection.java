@@ -8,7 +8,7 @@ import android.net.NetworkInfo;
  * Created by vitor on 10/12/2017.
  */
 
-public class BroadcastReciver {
+public class Connection {
 
     public static boolean verifyNet(Context contexto){
 

@@ -11,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -25,7 +24,7 @@ import com.poturno.poturnochat.R;
 import com.poturno.poturnochat.adapter.TabAdapter;
 import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.helper.Base64Custom;
-import com.poturno.poturnochat.helper.BroadcastReciver;
+import com.poturno.poturnochat.helper.Connection;
 import com.poturno.poturnochat.helper.Preferences;
 import com.poturno.poturnochat.helper.SlidingTabLayout;
 import com.poturno.poturnochat.model.Contact;
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(!BroadcastReciver.verifyNet(MainActivity.this)){
+        if(!Connection.verifyNet(MainActivity.this)){
             Toast.makeText(MainActivity.this,"Sem conecxao com internet",Toast.LENGTH_LONG).show();
         }
     }
