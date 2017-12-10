@@ -25,6 +25,7 @@ import com.poturno.poturnochat.R;
 import com.poturno.poturnochat.adapter.TabAdapter;
 import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.helper.Base64Custom;
+import com.poturno.poturnochat.helper.BroadcastReciver;
 import com.poturno.poturnochat.helper.Preferences;
 import com.poturno.poturnochat.helper.SlidingTabLayout;
 import com.poturno.poturnochat.model.Contact;
@@ -39,6 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
     private SlidingTabLayout slidingTabLayout;
     private ViewPager viewPager;
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if(!BroadcastReciver.verifyNet(MainActivity.this)){
+            Toast.makeText(MainActivity.this,"Sem conecxao com internet",Toast.LENGTH_LONG).show();
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
