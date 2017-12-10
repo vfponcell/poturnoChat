@@ -123,10 +123,12 @@ public class ChatFragment extends Fragment {
         PendingIntent pendingIntent = PendingIntent.getActivity(getContext(),0, intent,0);
 
         NotificationCompat.Builder builder = new android.support.v7.app.NotificationCompat.Builder(getContext());
+        builder.setContentIntent(pendingIntent);
         builder.setTicker("Nova mensagem de "+chat.getName());
         builder.setContentTitle("Mensagem de "+chat.getName());
         builder.setContentText(chat.getMensageValue());
         builder.setSmallIcon(R.drawable.ic_chat);
+        builder.setVibrate(new long[] { 200, 200, 200, 200, 200 });
 
         Notification notification = builder.build();
         notificationManager.notify(Integer.parseInt(chat.getUserId().replaceAll("[^0-9]", "")), notification);
