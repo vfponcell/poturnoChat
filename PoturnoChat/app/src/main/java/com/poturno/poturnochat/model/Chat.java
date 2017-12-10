@@ -9,6 +9,7 @@ public class Chat {
     private String userId;
     private String name;
     private String mensageValue;
+    private String senderId;
 
     public Chat() {
     }
@@ -35,5 +36,13 @@ public class Chat {
 
     public void setMensageValue(String mensageValue) {
         this.mensageValue = mensageValue;
+    }
+
+    public String getSenderId() {
+        return senderId;
+    }
+
+    public void setSenderId(String senderId) {
+        this.senderId = senderId;
     }
 }

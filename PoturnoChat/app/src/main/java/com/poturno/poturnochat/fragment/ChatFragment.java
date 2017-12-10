@@ -80,7 +80,7 @@ public class ChatFragment extends Fragment {
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     Chat chat = data.getValue(Chat.class);
                     chats.add(chat);
-                    if(!(logedUserId.equals(chat.getUserId()))){
+                    if(!(logedUserId.equals(chat.getSenderId()))){
                         notifyNewMensage(chat);
                     }
                 }
@@ -126,9 +126,10 @@ public class ChatFragment extends Fragment {
         builder.setTicker("Nova mensagem de "+chat.getName());
         builder.setContentTitle("Mensagem de "+chat.getName());
         builder.setContentText(chat.getMensageValue());
+        builder.setSmallIcon(R.drawable.ic_chat);
 
         Notification notification = builder.build();
-        notificationManager.notify(Integer.parseInt(chat.getUserId()), notification);
+        notificationManager.notify(Integer.parseInt(chat.getUserId().replaceAll("[^0-9]", "")), notification);
 
         try{
             Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

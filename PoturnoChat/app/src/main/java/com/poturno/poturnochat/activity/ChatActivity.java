@@ -67,7 +67,7 @@ public class ChatActivity extends AppCompatActivity {
             destinationContactId = Base64Custom.encodeBase64(destinationContactEmail);
 
             NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            notificationManager.cancel(Integer.parseInt(destinationContactId));
+            notificationManager.cancel(Integer.parseInt(destinationContactId.replaceAll("[^0-9]", "")));
         }
 
 
@@ -132,6 +132,7 @@ public class ChatActivity extends AppCompatActivity {
                     }
 
                     Chat chat = new Chat();
+                    chat.setSenderId(senderContactId);
                     chat.setUserId(destinationContactId);
                     chat.setName(destinationContactName);
                     chat.setMensageValue(mensageValue);
