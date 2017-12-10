@@ -71,10 +71,8 @@ public class ChatActivity extends AppCompatActivity {
         }
 
 
-
-
+        
         toolbar.setTitle(destinationContactName);
-        toolbar.setNavigationIcon(R.drawable.ic_action_arrow_left);
         setSupportActionBar(toolbar);
 
         mensages = new ArrayList<>();
