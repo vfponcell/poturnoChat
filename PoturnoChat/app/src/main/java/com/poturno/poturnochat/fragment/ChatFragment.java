@@ -1,9 +1,17 @@
 package com.poturno.poturnochat.fragment;
 
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
 import android.content.Intent;
+import android.media.Ringtone;
+import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,6 +43,7 @@ public class ChatFragment extends Fragment {
     private ArrayList<Chat> chats;
     private DatabaseReference databaseReference;
     private ValueEventListener valueEventListenerChats;
+    private NotificationManager notificationManager;
 
 
     public ChatFragment() {
@@ -42,14 +51,8 @@ public class ChatFragment extends Fragment {
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-        databaseReference.addValueEventListener(valueEventListenerChats);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         databaseReference.removeEventListener(valueEventListenerChats);
     }
 
@@ -66,7 +69,7 @@ public class ChatFragment extends Fragment {
         listView.setAdapter(adapter);
 
         Preferences preferences = new Preferences(getActivity());
-        String logedUserId = preferences.getIdentifier();
+        final String logedUserId = preferences.getIdentifier();
 
         databaseReference = FirebaseConfig.getDatabaseReference().child("chat").child(logedUserId);
 
@@ -77,6 +80,9 @@ public class ChatFragment extends Fragment {
                 for (DataSnapshot data : dataSnapshot.getChildren()){
                     Chat chat = data.getValue(Chat.class);
                     chats.add(chat);
+                    if(!(logedUserId.equals(chat.getUserId()))){
+                        notifyNewMensage(chat);
+                    }
                 }
                 adapter.notifyDataSetChanged();
             }
@@ -86,6 +92,8 @@ public class ChatFragment extends Fragment {
 
             }
         };
+
+        databaseReference.addValueEventListener(valueEventListenerChats);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -103,6 +111,32 @@ public class ChatFragment extends Fragment {
 
         return view;
 
+    }
+
+    private void notifyNewMensage(Chat chat){
+        notificationManager = (NotificationManager) getContext().getSystemService(Context.NOTIFICATION_SERVICE);
+
+        Intent intent = new Intent(getActivity(), ChatActivity.class);
+        intent.putExtra("name",chat.getName());
+        intent.putExtra("email", Base64Custom.decodeBase64(chat.getUserId()));
+
+        PendingIntent pendingIntent = PendingIntent.getActivity(getContext(),0, intent,0);
+
+        NotificationCompat.Builder builder = new android.support.v7.app.NotificationCompat.Builder(getContext());
+        builder.setTicker("Nova mensagem de "+chat.getName());
+        builder.setContentTitle("Mensagem de "+chat.getName());
+        builder.setContentText(chat.getMensageValue());
+
+        Notification notification = builder.build();
+        notificationManager.notify(Integer.parseInt(chat.getUserId()), notification);
+
+        try{
+            Uri uri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+            Ringtone ringtone = RingtoneManager.getRingtone(getContext(),uri);
+            ringtone.play();
+        }catch (Exception e){
+
+        }
     }
 
 }

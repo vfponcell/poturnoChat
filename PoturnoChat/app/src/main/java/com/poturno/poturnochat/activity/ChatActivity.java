@@ -1,5 +1,7 @@
 package com.poturno.poturnochat.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -47,8 +49,6 @@ public class ChatActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat);
 
-
-
         toolbar = (Toolbar) findViewById(R.id.tbr_chat);
         editMensage = (EditText) findViewById(R.id.edit_mensage);
         btnSend = (ImageButton) findViewById(R.id.btn_send);
@@ -65,7 +65,12 @@ public class ChatActivity extends AppCompatActivity {
             destinationContactName = bundle.getString("name");
             String destinationContactEmail = bundle.getString("email");
             destinationContactId = Base64Custom.encodeBase64(destinationContactEmail);
+
+            NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+            notificationManager.cancel(Integer.parseInt(destinationContactId));
         }
+
+
 
 
         toolbar.setTitle(destinationContactName);
