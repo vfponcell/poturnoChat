@@ -168,6 +168,7 @@ public class ChatActivity extends AppCompatActivity {
         });
     }
 
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == LOCATION_REQUEST_CODE) {
@@ -176,6 +177,42 @@ public class ChatActivity extends AppCompatActivity {
                 double lng = data.getDoubleExtra("lng", 0);
 
                 Log.i("LOCATION", "lat: " + lat + ", lng: " + lng);
+                String mensageValue = "lat: " + lat + ", lng: " + lng;
+
+                Mensage mensage = new Mensage();
+                mensage.setUserId(senderContactId);
+                mensage.setMensage(mensageValue);
+
+                Boolean senderMensageSaved = saveMensage(senderContactId, destinationContactId, mensage);
+                if (!senderMensageSaved) {
+                    Toast.makeText(ChatActivity.this, "Problema ao salvar mensagem", Toast.LENGTH_LONG).show();
+                } else {
+                    Boolean destinatioMensageSaved = saveMensage(destinationContactId, senderContactId, mensage);
+                    if (!destinatioMensageSaved) {
+                        Toast.makeText(ChatActivity.this, "Problema ao enviar mensagem", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                Chat chat = new Chat();
+                chat.setSenderId(senderContactId);
+                chat.setUserId(destinationContactId);
+                chat.setName(destinationContactName);
+                chat.setMensageValue(mensageValue);
+
+                Boolean senderChatSaved = saveChat(senderContactId, destinationContactId, chat);
+                if (!senderChatSaved) {
+                    Toast.makeText(ChatActivity.this, "Problema ao salvar conversa", Toast.LENGTH_LONG).show();
+                } else {
+                    chat = new Chat();
+                    chat.setUserId(senderContactId);
+                    chat.setName(senderContactName);
+                    chat.setMensageValue(mensageValue);
+
+                    Boolean destinationChatSaved = saveChat(destinationContactId, senderContactId, chat);
+                    if (!destinationChatSaved) {
+                        Toast.makeText(ChatActivity.this, "Problema ao enviar conversa", Toast.LENGTH_LONG).show();
+                    }
+                }
             }
         }
     }
@@ -212,11 +249,5 @@ public class ChatActivity extends AppCompatActivity {
             e.printStackTrace();
             return false;
         }
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        databaseReference.removeEventListener(valueEventListenerMensage);
     }
 }
