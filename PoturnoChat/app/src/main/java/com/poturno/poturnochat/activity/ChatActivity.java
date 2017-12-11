@@ -1,10 +1,12 @@
 package com.poturno.poturnochat.activity;
 
-import android.app.Notification;
+import android.app.Activity;
 import android.app.NotificationManager;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -31,6 +33,7 @@ public class ChatActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private EditText editMensage;
     private ImageButton btnSend;
+    private ImageButton btnLocation;
     private DatabaseReference databaseReference;
     private ListView listView;
     private ArrayList<Mensage> mensages;
@@ -43,6 +46,8 @@ public class ChatActivity extends AppCompatActivity {
     private String senderContactId;
     private String senderContactName;
 
+    private static final int LOCATION_REQUEST_CODE = 200;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +57,7 @@ public class ChatActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tbr_chat);
         editMensage = (EditText) findViewById(R.id.edit_mensage);
         btnSend = (ImageButton) findViewById(R.id.btn_send);
+        btnLocation = (ImageButton) findViewById(R.id.btn_location);
         listView = (ListView) findViewById(R.id.lv_chat);
 
         Preferences preferences = new Preferences(ChatActivity.this);
@@ -61,7 +67,7 @@ public class ChatActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent().getExtras();
 
-        if(bundle!=null){
+        if (bundle != null) {
             destinationContactName = bundle.getString("name");
             String destinationContactEmail = bundle.getString("email");
             destinationContactId = Base64Custom.encodeBase64(destinationContactEmail);
@@ -71,12 +77,11 @@ public class ChatActivity extends AppCompatActivity {
         }
 
 
-        
         toolbar.setTitle(destinationContactName);
         setSupportActionBar(toolbar);
 
         mensages = new ArrayList<>();
-        adapter = new MensageAdapter(ChatActivity.this,mensages);
+        adapter = new MensageAdapter(ChatActivity.this, mensages);
         listView.setAdapter(adapter);
 
 
@@ -92,7 +97,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 mensages.clear();
 
-                for (DataSnapshot data: dataSnapshot.getChildren()){
+                for (DataSnapshot data : dataSnapshot.getChildren()) {
                     Mensage mensage = data.getValue(Mensage.class);
                     mensages.add(mensage);
                 }
@@ -114,18 +119,18 @@ public class ChatActivity extends AppCompatActivity {
 
                 String mensageValue = editMensage.getText().toString();
 
-                if(!(mensageValue.isEmpty())){
+                if (!(mensageValue.isEmpty())) {
                     Mensage mensage = new Mensage();
                     mensage.setUserId(senderContactId);
                     mensage.setMensage(mensageValue);
 
                     Boolean senderMensageSaved = saveMensage(senderContactId, destinationContactId, mensage);
-                    if(!senderMensageSaved){
-                        Toast.makeText(ChatActivity.this,"Problema ao salvar mensagem", Toast.LENGTH_LONG).show();
-                    }else {
+                    if (!senderMensageSaved) {
+                        Toast.makeText(ChatActivity.this, "Problema ao salvar mensagem", Toast.LENGTH_LONG).show();
+                    } else {
                         Boolean destinatioMensageSaved = saveMensage(destinationContactId, senderContactId, mensage);
-                        if(!destinatioMensageSaved){
-                            Toast.makeText(ChatActivity.this,"Problema ao enviar mensagem", Toast.LENGTH_LONG).show();
+                        if (!destinatioMensageSaved) {
+                            Toast.makeText(ChatActivity.this, "Problema ao enviar mensagem", Toast.LENGTH_LONG).show();
                         }
                     }
 
@@ -135,33 +140,53 @@ public class ChatActivity extends AppCompatActivity {
                     chat.setName(destinationContactName);
                     chat.setMensageValue(mensageValue);
 
-                    Boolean senderChatSaved = saveChat(senderContactId,destinationContactId, chat);
-                    if(!senderChatSaved){
-                        Toast.makeText(ChatActivity.this,"Problema ao salvar conversa", Toast.LENGTH_LONG).show();
-                    }else {
+                    Boolean senderChatSaved = saveChat(senderContactId, destinationContactId, chat);
+                    if (!senderChatSaved) {
+                        Toast.makeText(ChatActivity.this, "Problema ao salvar conversa", Toast.LENGTH_LONG).show();
+                    } else {
                         chat = new Chat();
                         chat.setUserId(senderContactId);
                         chat.setName(senderContactName);
                         chat.setMensageValue(mensageValue);
 
-                        Boolean destinationChatSaved = saveChat(destinationContactId,senderContactId,chat);
-                        if(!destinationChatSaved){
-                            Toast.makeText(ChatActivity.this,"Problema ao enviar conversa", Toast.LENGTH_LONG).show();                        }
+                        Boolean destinationChatSaved = saveChat(destinationContactId, senderContactId, chat);
+                        if (!destinationChatSaved) {
+                            Toast.makeText(ChatActivity.this, "Problema ao enviar conversa", Toast.LENGTH_LONG).show();
+                        }
                     }
 
                     editMensage.setText("");
                 }
-
             }
         });
 
-
-
+        btnLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openMapActivity();
+            }
+        });
     }
 
-    private boolean saveMensage(String senderId, String destinationId, Mensage mensage){
-        try {
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == LOCATION_REQUEST_CODE) {
+            if (resultCode == Activity.RESULT_OK) {
+                long lat = data.getLongExtra("lat", 0);
+                long lng = data.getLongExtra("lng", 0);
 
+                Log.i("LOCATION", "lat: " + lat + ", lng: " + lng);
+            }
+        }
+    }
+
+    private void openMapActivity() {
+        Intent i = new Intent(this, MapActivity.class);
+        startActivityForResult(i, LOCATION_REQUEST_CODE);
+    }
+
+    private boolean saveMensage(String senderId, String destinationId, Mensage mensage) {
+        try {
             databaseReference = FirebaseConfig.getDatabaseReference().child("mensages");
 
             databaseReference.child(senderId)
@@ -170,20 +195,20 @@ public class ChatActivity extends AppCompatActivity {
                     .setValue(mensage);
 
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }
     }
 
-    private boolean saveChat(String senderId, String destinationId, Chat chat){
-        try{
+    private boolean saveChat(String senderId, String destinationId, Chat chat) {
+        try {
             databaseReference = FirebaseConfig.getDatabaseReference().child("chat");
             databaseReference.child(senderId)
                     .child(destinationId)
                     .setValue(chat);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

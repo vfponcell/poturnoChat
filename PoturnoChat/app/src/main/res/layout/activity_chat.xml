@@ -6,17 +6,17 @@
     android:background="@color/colorLight0"
     tools:context="com.poturno.poturnochat.activity.ChatActivity">
 
-    <include android:id="@+id/tbr_chat"
-        layout="@layout/toolbar"/>
-
+    <include
+        android:id="@+id/tbr_chat"
+        layout="@layout/toolbar" />
 
     <LinearLayout
         android:id="@+id/ll_mensage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:background="@android:color/white"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
+        android:orientation="horizontal">
 
         <EditText
             android:id="@+id/edit_mensage"
@@ -28,20 +28,27 @@
             android:textColorHint="@android:color/black" />
 
         <ImageButton
+            android:id="@+id/btn_location"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_my_location_white_24dp" />
+
+        <ImageButton
             android:id="@+id/btn_send"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_action_send"
-            android:backgroundTint="@color/colorPrimaryDark"/>
+            android:layout_height="match_parent"
+            android:backgroundTint="@color/colorPrimaryDark"
+            android:src="@drawable/ic_action_send" />
 
     </LinearLayout>
 
     <ListView
+        android:id="@+id/lv_chat"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/lv_chat"
-        android:padding="8dp"
+        android:layout_above="@id/ll_mensage"
         android:layout_below="@id/tbr_chat"
-        android:layout_above="@id/ll_mensage"/>
+        android:padding="8dp" />
 
 </RelativeLayout>
