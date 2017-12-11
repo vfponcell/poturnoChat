@@ -122,7 +122,8 @@ public class MapActivity extends AppCompatActivity implements LocationListener, 
 
     @SuppressLint("MissingPermission")
     private void initLocation() {
-        LocationManager locationManager = (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
+        LocationManager locationManager =
+                (LocationManager) this.getSystemService(Context.LOCATION_SERVICE);
 
         locationManager.requestLocationUpdates(
                 LocationManager.NETWORK_PROVIDER,
