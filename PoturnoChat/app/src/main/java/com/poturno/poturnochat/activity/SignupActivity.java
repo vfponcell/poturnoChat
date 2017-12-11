@@ -28,6 +28,7 @@ import com.poturno.poturnochat.R;
 import com.poturno.poturnochat.config.Constants;
 import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.helper.Base64Custom;
+import com.poturno.poturnochat.helper.Connection;
 import com.poturno.poturnochat.helper.Preferences;
 import com.poturno.poturnochat.model.User;
 import com.poturno.poturnochat.utils.BitmapUtils;
@@ -65,31 +66,36 @@ public class SignupActivity extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (name.getText().toString().isEmpty()
-                        || email.getText().toString().isEmpty()
-                        || password0.getText().toString().isEmpty()
-                        || password1.getText().toString().isEmpty()) {
+                if(Connection.verifyNet(SignupActivity.this)){
+                    if (name.getText().toString().isEmpty()
+                            || email.getText().toString().isEmpty()
+                            || password0.getText().toString().isEmpty()
+                            || password1.getText().toString().isEmpty()) {
 
-                    Toast.makeText(SignupActivity.this, "Todos os campos são obrigatorios",
-                            Toast.LENGTH_LONG).show();
+                        Toast.makeText(SignupActivity.this, "Todos os campos são obrigatorios",
+                                Toast.LENGTH_LONG).show();
 
-                } else {
-                    if (email.getText().toString().contains("@")) {
-                        if (password0.getText().toString().equals(password1.getText().toString())) {
-                            user = new User();
-                            user.setName(name.getText().toString());
-                            user.setEmail(email.getText().toString());
-                            user.setPassword(password0.getText().toString());
-                            addUser();
+                    } else {
+                        if (email.getText().toString().contains("@")) {
+                            if (password0.getText().toString().equals(password1.getText().toString())) {
+                                user = new User();
+                                user.setName(name.getText().toString());
+                                user.setEmail(email.getText().toString());
+                                user.setPassword(password0.getText().toString());
+                                addUser();
+                            } else {
+                                Toast.makeText(SignupActivity.this, "As senhas devem ser iguais",
+                                        Toast.LENGTH_LONG).show();
+                            }
                         } else {
-                            Toast.makeText(SignupActivity.this, "As senhas devem ser iguais",
+                            Toast.makeText(SignupActivity.this, "Email invalido",
                                     Toast.LENGTH_LONG).show();
                         }
-                    } else {
-                        Toast.makeText(SignupActivity.this, "Email invalido",
-                                Toast.LENGTH_LONG).show();
                     }
+                }else{
+                    Toast.makeText(SignupActivity.this,"Sem conecxao com internet",Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 

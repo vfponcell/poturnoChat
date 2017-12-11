@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.poturno.poturnochat.R;
 import com.poturno.poturnochat.config.FirebaseConfig;
 import com.poturno.poturnochat.helper.Base64Custom;
+import com.poturno.poturnochat.helper.Connection;
 import com.poturno.poturnochat.helper.Preferences;
 import com.poturno.poturnochat.model.User;
 
@@ -62,14 +63,19 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(email.getText().toString().isEmpty()||password.getText().toString().isEmpty()){
-                    Toast.makeText(LoginActivity.this,"Email e senha são obrigatorios",Toast.LENGTH_LONG).show();
-                }else{
-                    user = new User();
-                    user.setEmail(email.getText().toString());
-                    user.setPassword(password.getText().toString());
-                    loginValidation();
+                if(Connection.verifyNet(LoginActivity.this)){
+                    if(email.getText().toString().isEmpty()||password.getText().toString().isEmpty()){
+                        Toast.makeText(LoginActivity.this,"Email e senha são obrigatorios",Toast.LENGTH_LONG).show();
+                    }else{
+                        user = new User();
+                        user.setEmail(email.getText().toString());
+                        user.setPassword(password.getText().toString());
+                        loginValidation();
+                    }
+                }else {
+                    Toast.makeText(LoginActivity.this,"Sem conecxao com internet",Toast.LENGTH_LONG).show();
                 }
+
             }
         });
 
