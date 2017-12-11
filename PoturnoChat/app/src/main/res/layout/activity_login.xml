@@ -53,15 +53,26 @@
 
     <TextView
         android:id="@+id/txt_signup"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_centerInParent="false"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:gravity="center_vertical|center_horizontal"
         android:onClick="openSignup"
         android:text="@string/txt_signup"
         android:textColor="@android:color/white"
         android:textSize="20dp"
         android:layout_below="@+id/btn_login"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/txt_forgot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txt_signup"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="@string/txt_forgot"
+        android:textColor="@android:color/white"
+        android:textSize="20dp" />
+
+
 </android.widget.RelativeLayout>

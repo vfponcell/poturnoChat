@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">PoturnoChat</string>
     <string name="btn_login">Login</string>
-    <string name="txt_signup">Não tem conta? Dadastre-se!</string>
+    <string name="txt_signup">Não tem conta? Cadastre-se!</string>
     <string name="btn_signup">Cadastrar</string>
     <string name="item_settings">Configurações</string>
     <string name="item_logout">Sair</string>
@@ -27,6 +27,7 @@
     <string name="txt_credit">creditos</string>
     <string name="txt_iago">Iago Belo</string>
     <string name="txt_vitor">Vitor Poncell</string>
+    <string name="txt_forgot">Recuperar senha!</string>
 
-
+    <string name="map_box_token">pk.eyJ1IjoiaWFnb2JlbG8iLCJhIjoiY2phcGlyNGczMHNmZDJ4cGZieG84aWYzMSJ9.kldWtUqyYvoMrAlQT9Akkg</string>
 </resources>

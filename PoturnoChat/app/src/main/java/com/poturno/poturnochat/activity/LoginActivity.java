@@ -30,6 +30,7 @@ import com.poturno.poturnochat.model.User;
 public class LoginActivity extends AppCompatActivity {
 
     private TextView signup;
+    private TextView forgot;
     private EditText email;
     private EditText password;
     private Button login;
@@ -54,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
         isUserLoged();
 
         signup = (TextView) findViewById(R.id.txt_signup);
+        forgot = (TextView) findViewById(R.id.txt_forgot);
         email = (EditText) findViewById(R.id.edit_login_email);
         password = (EditText) findViewById(R.id.edit_login_password);
         login = (Button) findViewById(R.id.btn_login);
@@ -76,6 +78,33 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
+
+        forgot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                recoverPassword();
+            }
+        });
+    }
+
+    private void recoverPassword(){
+        firebaseAuth = FirebaseConfig.getFirebaseAuth();
+        String emailValue = email.getText().toString();
+        if(emailValue.isEmpty()){
+            Toast.makeText(LoginActivity.this,"Erro: campo de email vazio",Toast.LENGTH_LONG).show();
+        }else {
+            firebaseAuth.sendPasswordResetEmail(emailValue).addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()) {
+                        Toast.makeText(LoginActivity.this,"Email enviado para alteracao de senha",Toast.LENGTH_LONG).show();
+
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Erro: ao recuperar senha", Toast.LENGTH_LONG).show();
+                    }
+                }
+            });
+        }
     }
 
     private void isUserLoged(){
