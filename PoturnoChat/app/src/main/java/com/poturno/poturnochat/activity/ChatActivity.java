@@ -172,8 +172,8 @@ public class ChatActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == LOCATION_REQUEST_CODE) {
             if (resultCode == Activity.RESULT_OK) {
-                long lat = data.getLongExtra("lat", 0);
-                long lng = data.getLongExtra("lng", 0);
+                double lat = data.getDoubleExtra("lat", 0);
+                double lng = data.getDoubleExtra("lng", 0);
 
                 Log.i("LOCATION", "lat: " + lat + ", lng: " + lng);
             }
